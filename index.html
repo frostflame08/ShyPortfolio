@@ -8,24 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar" aria-label="Main navigation">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-briefcase" aria-label="Virtual assistant portfolio"></i>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#work" class="nav-link">Work</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <main>
     <!-- ===== HOME SECTION ===== -->
     <section class="hero" id="home">
@@ -193,23 +175,6 @@
     </main>
 
     <script>
-        const navLinks = document.querySelectorAll('.nav-link');
-        const navSections = document.querySelectorAll('main > section[id]');
-        const navObserver = new IntersectionObserver((entries) => {
-            const visibleSections = entries.filter(entry => entry.isIntersecting);
-            if (!visibleSections.length) return;
-
-            const activeSection = visibleSections.reduce((current, entry) =>
-                entry.intersectionRatio > current.intersectionRatio ? entry : current
-            );
-
-            navLinks.forEach(link => {
-                link.classList.toggle('active', link.hash === `#${activeSection.target.id}`);
-            });
-        }, { rootMargin: '-25% 0px -60% 0px' });
-
-        navSections.forEach(section => navObserver.observe(section));
-
         const revealItems = document.querySelectorAll(
             '.section-header, .skill-card, .education-card, .work-card, .timeline-item, .contact-item, .contact-form'
         );
