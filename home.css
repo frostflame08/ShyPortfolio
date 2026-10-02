@@ -27,14 +27,23 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--dark-brown-deep);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image: linear-gradient(rgba(32, 20, 16, 0.45), rgba(32, 20, 16, 0.45)), url('images/VA PIC.png');
     background-repeat: no-repeat, no-repeat;
     background-position: center center, center center;
     background-size: cover, cover;
-    background-attachment: fixed, fixed;
-    color: var(--text);
-    overflow-x: hidden;
-    min-height: 100vh;
 }
 
 .container {
@@ -732,8 +741,11 @@ body {
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     body {
+        background-color: var(--dark-brown-deep);
+    }
+
+    body::before {
         background-position: center center, 74% center;
-        background-attachment: scroll, scroll;
     }
 
     .nav-menu {
