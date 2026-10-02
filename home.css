@@ -22,7 +22,12 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(rgba(32, 20, 16, 0.45), rgba(32, 20, 16, 0.45)), url('images/VA\ PIC.png') center center / cover no-repeat fixed;
+    background-color: var(--dark-brown-deep);
+    background-image: linear-gradient(rgba(32, 20, 16, 0.45), rgba(32, 20, 16, 0.45)), url('images/VA PIC.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center center;
+    background-size: cover, cover;
+    background-attachment: fixed, fixed;
     color: var(--text);
     overflow-x: hidden;
     min-height: 100vh;
@@ -718,7 +723,8 @@ body {
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     body {
-        background-position: 65% center;
+        background-position: center center, 74% center;
+        background-attachment: scroll, scroll;
     }
 
     .nav-menu {
@@ -783,11 +789,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    body {
-        background-size: auto 100%;
-        background-position: 68% center;
-    }
-
     .navbar {
         position: absolute;
     }
@@ -999,9 +1000,6 @@ body {
 @media (max-width: 768px) {
     body {
         overflow-x: hidden;
-        background-attachment: scroll;
-        background-size: cover;
-        background-position: 65% top;
     }
 
     .navbar {
@@ -1179,11 +1177,6 @@ body {
 }
 
 @media (max-width: 380px) {
-    body {
-        background-size: cover;
-        background-position: 68% top;
-    }
-
     .nav-menu {
         gap: 0.3rem 0.65rem;
     }
