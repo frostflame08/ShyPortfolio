@@ -34,7 +34,7 @@
                 <h2>Hi There,</h2>
                 <h1>I'm <span class="highlight">Shy</span></h1>
                 <h3 class="job-title">General Virtual Assistant</h3>
-                <p class="subtitle typing-text">Specialized in <span class="highlight-text">Executive Virtual Assistance, GHL Automations &amp; Administrative support</span></p>
+                <p class="subtitle">Specialized in <span class="highlight-text">Executive Virtual Assistance, GHL Automations &amp; Administrative support</span></p>
                 <a href="#about" class="btn-about">About Me</a>
                 
                 <div class="social-links">
@@ -52,6 +52,7 @@
     <section class="about page-section" id="about">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">01 / About</span>
                 <h2>About Me</h2>
                 <p class="section-subtitle">Professional Background &amp; Expertise</p>
             </div>
@@ -86,6 +87,7 @@
     <section class="skills page-section" id="skills">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">02 / Skills</span>
                 <h2>Skills &amp; Competencies</h2>
                 <p class="section-subtitle">Tools &amp; Expertise I Master</p>
             </div>
@@ -105,6 +107,7 @@
     <section class="education page-section" id="education">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">03 / Education</span>
                 <h2>Education</h2>
                 <p class="section-subtitle">Academic Background</p>
             </div>
@@ -124,6 +127,7 @@
     <section class="work page-section" id="work">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">04 / Services</span>
                 <h2>Services &amp; Capabilities</h2>
                 <p class="section-subtitle">What I Can Do For Your Business</p>
             </div>
@@ -143,6 +147,7 @@
     <section class="experience page-section" id="experience">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">05 / Experience</span>
                 <h2>Work Experience</h2>
                 <p class="section-subtitle">Professional Career Timeline</p>
             </div>
@@ -163,6 +168,7 @@
     <section class="contact page-section" id="contact">
         <div class="container">
             <div class="section-header">
+                <span class="section-kicker">06 / Contact</span>
                 <h2>Get In Touch</h2>
                 <p class="section-subtitle">Let's Work Together</p>
             </div>
@@ -187,41 +193,6 @@
     </main>
 
     <script>
-        const typingLines = document.querySelectorAll('.typing-text');
-
-        typingLines.forEach((line, lineIndex) => {
-            const message = line.textContent.trim();
-            let characterIndex = 0;
-            let deleting = false;
-
-            const typeLoop = () => {
-                line.textContent = message.slice(0, characterIndex);
-
-                if (!deleting && characterIndex < message.length) {
-                    characterIndex += 1;
-                    setTimeout(typeLoop, 55);
-                    return;
-                }
-
-                if (!deleting) {
-                    deleting = true;
-                    setTimeout(typeLoop, 1800 + lineIndex * 400);
-                    return;
-                }
-
-                if (characterIndex > 0) {
-                    characterIndex -= 1;
-                    setTimeout(typeLoop, 30);
-                    return;
-                }
-
-                deleting = false;
-                setTimeout(typeLoop, 500);
-            };
-
-            setTimeout(typeLoop, lineIndex * 700);
-        });
-
         const navLinks = document.querySelectorAll('.nav-link');
         const navSections = document.querySelectorAll('main > section[id]');
         const navObserver = new IntersectionObserver((entries) => {
@@ -238,6 +209,29 @@
         }, { rootMargin: '-25% 0px -60% 0px' });
 
         navSections.forEach(section => navObserver.observe(section));
+
+        const revealItems = document.querySelectorAll(
+            '.section-header, .skill-card, .education-card, .work-card, .timeline-item, .contact-item, .contact-form'
+        );
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!reducedMotion && 'IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+            revealItems.forEach((element, index) => {
+                element.classList.add('reveal-item');
+                element.style.setProperty('--reveal-delay', `${(index % 4) * 55}ms`);
+                revealObserver.observe(element);
+            });
+
+            document.documentElement.classList.add('motion-ready');
+        }
     </script>
 </body>
 </html>
