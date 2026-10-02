@@ -253,7 +253,7 @@ body {
 .social-links {
     display: flex;
     gap: 1rem;
-    position: fixed;
+    position: absolute;
     left: 2rem;
     bottom: 2rem;
     z-index: 10;
