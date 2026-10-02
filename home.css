@@ -252,10 +252,7 @@ body {
 .social-links {
     display: flex;
     gap: 1rem;
-    position: absolute;
-    left: 2rem;
-    bottom: 2rem;
-    z-index: 10;
+    position: static;
 }
 
 .social-icon {
